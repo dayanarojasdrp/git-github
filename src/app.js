@@ -1,5 +1,5 @@
 function greet(name) {
-  return `Hello, ${name}. This is the main app file.`;
+  return ` Hello, ${name}. This is the main app file.`;
 }
 
 console.log(greet("Dayana"));
