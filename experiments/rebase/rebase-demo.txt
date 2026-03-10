@@ -1,3 +1,6 @@
 linea 1
 linea 2
+<<<<<<< HEAD
 linea 3
+=======
+>>>>>>> c1afba0 (Commit 2)
