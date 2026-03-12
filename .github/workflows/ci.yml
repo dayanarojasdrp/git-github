@@ -25,3 +25,15 @@ jobs:
       
       - name: Run linters
         run: npm run lint    
+      - name: Create backup
+        run: |
+         mkdir -p uploads
+         echo "Archivo de prueba" > uploads/ejemplo.txt
+         tar -czf backup.tar.gz uploads/
+
+      - name: Upload backup artifact
+        uses: actions/upload-artifact@v3
+        with:
+         name: backup-uploads
+         path: backup.tar.gz
+
