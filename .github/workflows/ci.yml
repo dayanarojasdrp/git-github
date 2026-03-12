@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: dev   # ← AQUÍ
+    environment: dev  
 
     steps:
       - name: Checkout
@@ -19,3 +19,9 @@ jobs:
         run: |
           echo "API_KEY: ${{ secrets.API_KEY }}"
           echo "DB_PASSWORD: ${{ secrets.DB_PASSWORD }}"
+      - name: Install dependencies
+        run: npm install
+     
+      
+      - name: Run linters
+        run: npm run lint    
