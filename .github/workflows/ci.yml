@@ -1,20 +1,27 @@
 name: CI
 
 on:
- push:
-  branch:
-   - main
-   - feature/*
-jobs:
- build:
-  runs-on: ubuntu-latest
-  enviroment: dev
- 
-  steps:
-   - name: Checkout
-    uses: actions/checkout@v4
+  push:
+    branches:
+      - main
+       - feature/*
 
-   - name: Use secrets from dev
-    run: |
-     echo "API_KEY: ${{ secrets.API_KEY }}"
-     echo "DB_PASSWORD: ${{ secrets.DB_PASSWORD }}"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: dev  
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use secrets from dev
+        run: |
+          echo "API_KEY: ${{ secrets.API_KEY }}"
+          echo "DB_PASSWORD: ${{ secrets.DB_PASSWORD }}"
+      - name: Install dependencies
+        run: npm install
+     
+      
+      - name: Run linters
+        run: npm run lint    

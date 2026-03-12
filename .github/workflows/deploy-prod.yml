@@ -1,27 +1,27 @@
 name: Deploy to Production
- 
+
 on:
- workflow_dispatch: 
- push:
-  branches:
-   - main
+  workflow_dispatch:   
+  push:
+    branches:
+      - main          
+
 jobs:
- deploy:
-  runs-on: ubuntu-latest
-  enviroment: prod
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+ 
 
+    steps:
+      - name: Login to GHCR
+        run: |
+          echo "${{ secrets.API_KEY }}" | docker login ghcr.io -u dayanarojasdrp --password-stdin
 
- steps:
-  - name: Checkout
-   uses: checkout@v4
+      - name: Pull image
+        run: |
+          docker pull ghcr.io/dayanarojasdrp/mi-app:latest
 
-  - name: Use prod secrets
-   run: |
-     echo "Deploying with API_KEY=${{ secrets.API_KEY }}"
-     echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}"
-
-
-  - name: Deploy
-   run: |
-    echo "Simulando deploy a producción..."
-
+      - name: Run container
+        run: |
+          docker run -d -p 3000:3000 ghcr.io/dayanarojasdrp/mi-app:latest
