@@ -1,0 +1,14 @@
+{
+  "name": "mi-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node /src/app.js",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0"
+  }
+}

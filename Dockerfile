@@ -4,12 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-CMD ["node", "app.js"]
-FROM node:20
+CMD ["node", "src/app.js"]
 
-WORKDIR /app
-
-COPY . .
-
-CMD ["node", "app.js"]
 
