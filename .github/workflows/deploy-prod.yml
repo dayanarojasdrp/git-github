@@ -13,7 +13,7 @@ jobs:
 
  steps:
   - name: Checkout
-   uses: checkout@v4
+   uses: actions/checkout@v4
 
   - name: Use prod secrets
    run: |
