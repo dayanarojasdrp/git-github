@@ -1,27 +1,27 @@
 name: Deploy to Production
- 
+
 on:
- workflow_dispatch: 
- push:
-  branches:
-   - main
+  workflow_dispatch:   # deploy manual
+  push:
+    branches:
+      - main           # solo main puede desplegar
+
 jobs:
- deploy:
-  runs-on: ubuntu-latest
-  enviroment: prod
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+ 
 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
- steps:
-  - name: Checkout
-   uses: actions/checkout@v4
+      - name: Use prod secrets
+        run: |
+          echo "Deploying with API_KEY=${{ secrets.API_KEY }}"
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}"
 
-  - name: Use prod secrets
-   run: |
-     echo "Deploying with API_KEY=${{ secrets.API_KEY }}"
-     echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}"
-
-
-  - name: Deploy
-   run: |
-    echo "Simulando deploy a producción..."
-
+      - name: Deploy
+        run: |
+          echo "Simulando deploy a producción..."
